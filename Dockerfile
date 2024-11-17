@@ -1,20 +1,27 @@
-# Use an official Python runtime as a parent image
+# Use Python 3.9 slim image
 FROM python:3.9-slim
 
-# Set the working directory in the container
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
 WORKDIR /app
 
-# Copy application files
-COPY app.py llm_handler.py requirements.txt ./
-
-# Copy .env file
-COPY .env .env
-
-# Install dependencies
+# Copy requirements first (for better caching)
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the port the app runs on
-EXPOSE 5000
+# Copy application files
+COPY . .
 
-# Command to run the application
-CMD ["python", "app.py"]
+# Make sure the templates directory exists
+RUN mkdir -p templates
+
+# Set environment variables
+ENV PORT=8080
+
+# Run the application with gunicorn
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
