@@ -19,6 +19,11 @@ COPY . .
 
 # Make sure the templates directory exists
 RUN mkdir -p templates
+# Specify build argument for the API key
+ARG OPENAI_API_KEY
+
+# Set the argument as an environment variable in the container
+ENV OPENAI_API_KEY=$OPENAI_API_KEY
 
 # Set environment variables
 ENV PORT=8080
