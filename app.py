@@ -40,7 +40,7 @@ def query_pdf():
             app.logger.info(f"Received query: {request.json}")
         
             # Check environment variables
-            api_key = os.getenv('_OPENAI_API_KEY')
+            api_key = os.getenv('OPENAI_API_KEY')
             if not api_key:
                 app.logger.error("API Key not found in environment")
                 return jsonify({
