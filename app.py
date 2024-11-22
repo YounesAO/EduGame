@@ -22,11 +22,10 @@ def query_pdf():
     try:
         # Retrieve file and query from request
         pdf_file = request.files.get('pdf')
-        query = request.form.get('query')
 
-        if not pdf_file or not query:
-            return jsonify({"error": "PDF file and query are required"}), 400
-
+        if not pdf_file :
+            return jsonify({"error": "PDF file is required"}), 400
+       
         if not allowed_file(pdf_file.filename):
             return jsonify({"error": "Invalid file type. Only PDF files are allowed."}), 400
 
@@ -37,13 +36,16 @@ def query_pdf():
 
         try:
             # Process the PDF and query using the function
-            result = get_prompt_result(filepath, query)
-            
+            result = get_prompt_result(filepath)
+            print("Type of result:", type(result))
+            print("Raw result:", repr(result))
             # Clean up
             if os.path.exists(filepath):
                 os.remove(filepath)
                 
-            return jsonify({"query": query, "answer": result}), 200
+            return jsonify({
+            "answer": result
+            }), 200
 
         except Exception as e:
             # Clean up in case of error

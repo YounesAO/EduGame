@@ -9,11 +9,9 @@
 <body>
     <div class="container">
         <h1>Upload PDF File</h1>
-        <form action="/" method="post" enctype="multipart/form-data">
-            <label for="query" class="file-label">Text query</label>
-            <input type="text" name="query" id="file" class="file-input" required>
-            <label for="file" class="file-label">Choose a PDF file to upload</label>
-            <input type="file" name="file" id="file" class="file-input" required>
+        <form action="/query-pdf" method="post" enctype="multipart/form-data">
+            <label for="pdf" class="file-label">Choose a PDF file to upload</label>
+            <input type="file" name="pdf" id="file" class="file-input" required>
             <button type="submit" class="upload-button">Upload</button>
         </form>
         {% with messages = get_flashed_messages() %}
