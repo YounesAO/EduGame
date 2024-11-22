@@ -33,20 +33,20 @@ def create_qa_chain(text):
     texts = text_splitter.split_text(text)
     
         
-    api_key = os.getenv("_OPENAI_API_KEY")
+    api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
         raise Exception("OpenAI API key is missing. Please set the OPENAI_API_KEY environment variable.")
 
     # Create embeddings and vector store
     embeddings = OpenAIEmbeddings(
-        openai_api_key=os.getenv("_OPENAI_API_KEY")
+        openai_api_key=os.getenv("OPENAI_API_KEY")
     )
     vectorstore = FAISS.from_texts(texts, embeddings)
     llm = ChatOpenAI(
         model_name="gpt-4-0125-preview",  # Using GPT-4 Turbo
         temperature=0.7,
         max_tokens=4000,
-        openai_api_key=os.getenv("_OPENAI_API_KEY")
+        openai_api_key=os.getenv("OPENAI_API_KEY")
     )
     
     # Create QA chain
