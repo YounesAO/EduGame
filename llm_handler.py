@@ -32,6 +32,16 @@ def create_qa_chain(text):
     )
     texts = text_splitter.split_text(text)
     
+    app.logger.info(f"Received query: {request.json}")
+        
+    # Check environment variables
+    api_key = os.getenv('_OPENAI_API_KEY')
+    if not api_key:
+        app.logger.error("API Key not found in environment")
+        return jsonify({
+            "error": "Configuration error",
+            "details": "Missing API key"
+        }), 500
     # Create embeddings and vector store
     embeddings = OpenAIEmbeddings(
         openai_api_key=os.getenv("_OPENAI_API_KEY")
