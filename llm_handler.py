@@ -65,8 +65,10 @@ def get_prompt_result(pdf_path):
         text = extract_text_from_pdf(pdf_path)
         
         # Create QA chain
-        qa_chain = create_qa_chain(text)
-        
+        try:
+            qa_chain = create_qa_chain(text)
+        except Exception as chain_error:
+            raise Exception(f"Error creating QA chain: {str(chain_error)}")        
         # If no specific query is provided, use the course material prompt
         query = f"""Given the content of the PDF course material below, generate a JSON object that includes:
         - The chapter name.
