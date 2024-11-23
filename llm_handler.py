@@ -123,7 +123,7 @@ def get_prompt_result(pdf_path):
         # Get response
         response = qa_chain({"query": query})
         parsed_result = response['result']
-        
+        print(parsed_result)
         return json.loads(parsed_result)
      
     except Exception as e:

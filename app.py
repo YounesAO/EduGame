@@ -52,9 +52,10 @@ def query_pdf():
             # Clean up
             if os.path.exists(filepath):
                 os.remove(filepath)
-                
+            print(result)
+
             return jsonify({
-            "answer": result
+            "answer": "result"
             }), 200
 
         except Exception as e:
