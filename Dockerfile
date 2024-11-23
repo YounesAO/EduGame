@@ -14,9 +14,14 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+
 # Copy application files
 COPY . .
 
+ARG OPENAI_API_KEY
+
+# Optionally, set it as an environment variable for use in the build process
+ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 # Set environment variables
 ENV PORT=8080
 
