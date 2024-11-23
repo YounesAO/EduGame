@@ -17,11 +17,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application files
 COPY . .
 
-# Make sure the templates directory exists
-RUN mkdir -p templates
-
 # Set environment variables
 ENV PORT=8080
+ENV OPENAI_API_KEY=""
 
 # Run the application with gunicorn
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
