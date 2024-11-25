@@ -46,7 +46,7 @@ def query_pdf():
             print(result)
 
             return jsonify({
-            "answer": "result"
+            "answer": result
             }), 200
 
         except Exception as e:
