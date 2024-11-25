@@ -37,16 +37,7 @@ def query_pdf():
         try:
             # Process the PDF and query using the function
             result = get_prompt_result(filepath)
-            app.logger.info(f"Received query: {request.json}")
-        
-            # Check environment variables
-            api_key = os.getenv('OPENAI_API_KEY')
-            if not api_key:
-                app.logger.error("API Key not found in environment")
-                return jsonify({
-                    "error": "Configuration error",
-                    "details": "Missing API key"
-                }), 500
+           
             print("Type of result:", type(result))
             print("Raw result:", repr(result))
             # Clean up
