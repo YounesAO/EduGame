@@ -54,7 +54,7 @@ def query_pdf():
         "match": [
             {{
                 "element": "element to match",
-                "match": "correct match"
+                "matchText": "correct match"
             }}
         ],
         "shortContent": [
@@ -144,7 +144,7 @@ def query_match():
             "match": [
                 {{
                     "element": "element to match",
-                    "match": "correct match"
+                    "matchText": "correct match"
                 }}
             ]
         }}
