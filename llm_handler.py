@@ -61,7 +61,7 @@ def create_qa_chain(text):
     
     return qa_chain
 
-def get_prompt_result(pdf_path):
+def get_prompt_result(pdf_path,query):
     """Process PDF and return answer to query."""
     try:
         # Extract text from PDF
@@ -73,52 +73,6 @@ def get_prompt_result(pdf_path):
         except Exception as chain_error:
             raise Exception(f"Error creating QA chain: {str(chain_error)}")        
         # If no specific query is provided, use the course material prompt
-        query = f"""Given the content of the PDF course material below, generate a JSON object that includes:
-        - The chapter name.
-        - A short description of the chapter.
-        - A list of quiz questions with multiple answers and the correct answer(s).
-        - A list of flip cards for key terms with their definitions or descriptions.
-        - A list of matching elements.
-        - Short content summaries for key parts of the chapter.
-
-
-        The resulting JSON object should have the following structure:
-        {{
-            "chapterName": "Title of the Chapter",
-            "description": "Short description of the chapter.",
-            "quiz": [
-                {{
-                    "question": "What is question 1?",
-                    "answers": ["answer1", "answer2", "answer3", "answer4"],
-                    "correctAnswer": ["answer2"]
-                }}
-            ],
-            "flipcards": [
-                {{
-                    "front": "word1",
-                    "back": "definition or description or characteristic"
-                }}
-            ],
-            "match": [
-                {{
-                    "element": "element to match",
-                    "match": "correct match"
-                }}
-            ],
-            "shortContent": [
-                "Content1: short content must know about a small part of the chapter.",
-                "Content2: new short content must know about another small part of the chapter."
-            ]
-        }} 
-        
-        IMPORTANT RESPONSE REQUIREMENTS:
-        1. Provide ONLY the JSON object, with no additional text, comments, or markdown
-        2. Do not use any escape characters like \n, \t, or \r
-        3. Use regular quotes (") not fancy quotes
-        4. Make sure all property names and string values are in double quotes
-        5. Ensure the JSON is valid and can be parsed by Python's json.loads()
-        6. Do not include ```json or ``` markers
-        7. Format as a single line without line breaks"""
         
         # Get response
         response = qa_chain({"query": query})
