@@ -71,7 +71,7 @@ def query_pdf():
     5. Ensure the JSON is valid and can be parsed by Python's json.loads().
     6. Do not include ```json or ``` markers.
     7. Format as a single line without line breaks."""
-    response_query_pdf(query)
+    return response_query_pdf(query)
 
 
 
@@ -103,7 +103,7 @@ def query_quiz():
         6. Do not include ```json or ``` markers.
         7. Format as a single line without line breaks.
         """
-    response_query_pdf(quiz_query)
+    return response_query_pdf(quiz_query)
 
 @app.route('/flipcards-query', methods=['POST'])
 def query_flipcards():
@@ -130,7 +130,7 @@ def query_flipcards():
         6. Do not include ```json or ``` markers.
         7. Format as a single line without line breaks.
         """
-    response_query_pdf(flipcards_query)
+    return response_query_pdf(flipcards_query)
 
 
 @app.route('/match-query-pdf', methods=['POST'])
@@ -158,7 +158,7 @@ def query_match():
         6. Do not include ```json or ``` markers.
         7. Format as a single line without line breaks.
         """
-    response_query_pdf(match_query)
+    return response_query_pdf(match_query)
 
 @app.route('/short-content-query-pdf', methods=['POST'])
 def query_shortcontent():
@@ -183,7 +183,7 @@ def query_shortcontent():
         6. Do not include ```json or ``` markers.
         7. Format as a single line without line breaks.
         """
-    response_query_pdf(shortcontent_query)
+    return response_query_pdf(shortcontent_query)
 
 @app.route('/health', methods=['GET'])
 def health_check():
