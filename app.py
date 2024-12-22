@@ -2,12 +2,17 @@ from flask import Flask, request, jsonify, render_template
 import os
 from llm_handler import get_prompt_result
 from werkzeug.utils import secure_filename
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.secret_key = "secret_key"
 app.config["UPLOAD_FOLDER"] = "/tmp"  # Changed to /tmp for Cloud Run
 app.config["ALLOWED_EXTENSIONS"] = {"pdf"}
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16MB max file size
+# Enable CORS for specific origin and route
+CORS(app, resources={
+    r"/query-pdf": {"origins": "http://localhost:3000"}
+})
 
 def allowed_file(filename):
     return '.' in filename and \

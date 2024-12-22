@@ -11,3 +11,4 @@ python-dotenv
 faiss-cpu
 tiktoken
 werkzeug
+flask-cors
