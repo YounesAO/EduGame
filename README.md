@@ -1,5 +1,8 @@
 # 📚 EduGame - AI-Powered Educational Content Generator
 
+> **📝 This project is part of EduXgame**  
+> Published in *Software Impacts* journal: [https://doi.org/10.1016/j.simpa.2025.100761](https://doi.org/10.1016/j.simpa.2025.100761)
+
 EduGame is an intelligent educational platform that transforms PDF course materials into interactive learning experiences. Using OpenAI's GPT-4 and LangChain, it automatically generates quizzes, flashcards, matching exercises, and content summaries from any uploaded PDF document.
 
 ## ✨ Features
@@ -26,6 +29,22 @@ EduGame/
 │   └── style.css       # Styling for the web interface
 └── json.json           # Sample JSON output structure
 ```
+
+
+## 🔄 Workflow (BPMN)
+
+The following diagram illustrates the PDF processing pipeline:
+
+![EduGame BPMN Workflow]([docs/bpmn_workflow.png](https://github.com/user-attachments/assets/86d65cb7-6538-4a05-914d-7f864825bb3d))
+
+**Process Flow:**
+1. **PDF Upload** → Extract text using PyPDF2
+2. **Validation** → Check for valid PDF format (send error if invalid)
+3. **Text Splitting** → Fragment text using LangChain's text_splitter
+4. **Embeddings** → Store embeddings with context (send error on failure)
+5. **QA Chain Configuration** → Set up the retrieval chain
+6. **Query Processing** → Process the educational content query
+7. **JSON Response** → Generate structured learning materials (handle OpenAI API failures)
 
 ## 🚀 Getting Started
 
