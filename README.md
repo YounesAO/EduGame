@@ -34,8 +34,10 @@ EduGame/
 ## 🔄 Workflow (BPMN)
 
 The following diagram illustrates the PDF processing pipeline:
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/86d65cb7-6538-4a05-914d-7f864825bb3d" alt="EduGame BPMN Workflow" />
+</p>
 
-![EduGame BPMN Workflow](https://github.com/user-attachments/assets/86d65cb7-6538-4a05-914d-7f864825bb3d)
 
 **Process Flow:**
 1. **PDF Upload** → Extract text using PyPDF2
