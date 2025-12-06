@@ -12,6 +12,7 @@ EduGame is an intelligent educational platform that transforms PDF course materi
 - **🐳 Docker Ready** - Easy deployment with Docker and Cloud Run support
 
 ## 🏗️ Architecture
+<img width="334" height="173" alt="image" src="https://github.com/user-attachments/assets/80dc2084-557a-408e-a6cd-1f08e3c7c948" />
 
 ```
 EduGame/
